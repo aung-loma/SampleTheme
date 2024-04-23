@@ -73,6 +73,10 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.accompanist.system.ui.controller)
+    implementation(libs.system)
+
+    implementation("androidx.compose.material:material:1.6.6")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.7.0")
