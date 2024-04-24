@@ -86,11 +86,11 @@ fun SampleThemeTheme(
     SideEffect {
         systemUiController.setStatusBarColor(
             color = colors.primary,
-            darkIcons = theme == ThemeProvider.Theme.DARK,
+            darkIcons = theme != ThemeProvider.Theme.DARK,
         )
         systemUiController.setNavigationBarColor(
             color = colors.primary,
-            darkIcons = theme == ThemeProvider.Theme.DARK,
+            darkIcons = theme != ThemeProvider.Theme.DARK,
         )
     }
 
