@@ -79,8 +79,8 @@ fun SampleThemeTheme(
     val typography = when(theme) {
         ThemeProvider.Theme.SYSTEM -> if(isSystemInDarkTheme()) DarkTypography else LightTypography
         ThemeProvider.Theme.DARK -> DarkTypography
-        ThemeProvider.Theme.LIGHT -> LightTypography
-        ThemeProvider.Theme.PINK -> LightTypography
+        ThemeProvider.Theme.LIGHT -> if(isSystemInDarkTheme()) DarkTypography else LightTypography
+        ThemeProvider.Theme.PINK ->  if(isSystemInDarkTheme()) DarkTypography else LightTypography
     }
     val systemUiController = rememberSystemUiController()
     SideEffect {
