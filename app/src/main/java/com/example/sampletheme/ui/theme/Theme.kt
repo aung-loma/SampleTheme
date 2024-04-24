@@ -5,6 +5,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import com.example.sampletheme.provider.ThemeProvider
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @SuppressLint("ConflictingOnColor")
@@ -39,41 +40,57 @@ private val LightColorPalette = lightColors(
     onSurface = White
 )
 
-val JetRortyColors: Colors
+@SuppressLint("ConflictingOnColor")
+private val PinkColorPalette = Colors(
+    primary = Pink,
+    primaryVariant = Red,
+    onPrimary = PinkLight,
+    secondary = Pink.copy(alpha = 0.8f),
+    secondaryVariant = Red,
+    onSecondary = PinkLight,
+
+    background = PinkLight,
+    onBackground = PinkLight,
+
+    surface = YellowLight,
+    onSurface = YellowLight,
+    isLight = true,
+    error = Red,
+    onError = Red700
+)
+
+val SampleThemeColors: Colors
     @Composable get() = MaterialTheme.colors
 
-val JetRortyShapes: Shapes
-    @Composable get() = MaterialTheme.shapes
-
-val JetRortyTypography: Typography
+val SampleThemeTypography: Typography
     @Composable get() = MaterialTheme.typography
 
 @Composable
 fun SampleThemeTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    theme : ThemeProvider.Theme,
     content: @Composable () -> Unit
 ) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
+    val colors = when(theme) {
+        ThemeProvider.Theme.SYSTEM -> if(isSystemInDarkTheme()) DarkColorPalette else LightColorPalette
+        ThemeProvider.Theme.DARK -> DarkColorPalette
+        ThemeProvider.Theme.LIGHT -> LightColorPalette
+        ThemeProvider.Theme.PINK -> PinkColorPalette
     }
-
-    val typography = if (darkTheme) {
-        DarkTypography
-    } else {
-        LightTypography
+    val typography = when(theme) {
+        ThemeProvider.Theme.SYSTEM -> if(isSystemInDarkTheme()) DarkTypography else LightTypography
+        ThemeProvider.Theme.DARK -> DarkTypography
+        ThemeProvider.Theme.LIGHT -> LightTypography
+        ThemeProvider.Theme.PINK -> LightTypography
     }
-
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setStatusBarColor(
             color = colors.primary,
-            darkIcons = darkTheme.not(),
+            darkIcons = theme == ThemeProvider.Theme.DARK,
         )
         systemUiController.setNavigationBarColor(
             color = colors.primary,
-            darkIcons = darkTheme.not(),
+            darkIcons = theme == ThemeProvider.Theme.DARK,
         )
     }
 

@@ -42,6 +42,11 @@ val Gray800 = Color(0xFF292929)
 val Gray900 = Color(0xFF212121)
 val Gray950 = Color(0xFF141414)
 
+val Pink = Color(0xFFFF90BC)
+val PinkLight = Color(0xFFFFC0D9)
+val YellowLight = Color(0xFFF9F9E0)
+val SkyLight = Color(0xFF8ACDD7)
+
 val selectedBottomItemColor = Red
 val unselectedBottomItemColor = Gray500
 
