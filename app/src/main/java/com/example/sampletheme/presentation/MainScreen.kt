@@ -1,5 +1,6 @@
 package com.example.sampletheme.presentation
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,9 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.sampletheme.provider.ThemeProvider
 import com.example.sampletheme.provider.shouldUseDarkMode
+import com.example.sampletheme.ui.theme.Black
 import com.example.sampletheme.ui.theme.SampleThemeColors
 import com.example.sampletheme.ui.theme.SampleThemeTheme
 import com.example.sampletheme.ui.theme.SampleThemeTypography
+import com.example.sampletheme.ui.theme.White
 import com.example.sampletheme.ui.theme.cardBackgroundColor
 
 @Composable
@@ -49,7 +52,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                         onClick = {
                             viewModel.changeTheme(ThemeProvider.Theme.LIGHT)
                         }, colors = ButtonDefaults.buttonColors(
-                            containerColor = SampleThemeColors.cardBackgroundColor
+                            containerColor = SampleThemeColors.primary
                         )
                     ) {
                         Text(text = "Light", style = SampleThemeTypography.body2)
@@ -58,7 +61,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                         onClick = {
                             viewModel.changeTheme(ThemeProvider.Theme.DARK)
                         }, colors = ButtonDefaults.buttonColors(
-                            containerColor = SampleThemeColors.cardBackgroundColor
+                            containerColor = SampleThemeColors.primary
                         )
                     ) {
                         Text(text = "Dark", style = SampleThemeTypography.h4)
@@ -67,7 +70,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                         onClick = {
                             viewModel.changeTheme(ThemeProvider.Theme.SYSTEM)
                         }, colors = ButtonDefaults.buttonColors(
-                            containerColor = SampleThemeColors.cardBackgroundColor
+                            containerColor = SampleThemeColors.primary
                         )
                     ) {
                         Text(text = "System", style = SampleThemeTypography.subtitle1)
@@ -76,7 +79,7 @@ fun MainScreen(viewModel: MainViewModel = hiltViewModel()) {
                         onClick = {
                             viewModel.changeTheme(ThemeProvider.Theme.PINK)
                         }, colors = ButtonDefaults.buttonColors(
-                            containerColor = SampleThemeColors.cardBackgroundColor
+                            containerColor = SampleThemeColors.primary
                         )
                     ) {
                         Text(text = "Other Pink", style = SampleThemeTypography.subtitle1)

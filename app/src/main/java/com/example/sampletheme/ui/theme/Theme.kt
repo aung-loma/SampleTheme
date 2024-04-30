@@ -5,6 +5,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import com.example.sampletheme.provider.ThemeProvider
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -12,7 +13,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 private val DarkColorPalette = darkColors(
     primary = Blue,
     primaryVariant = Blue,
-    onPrimary = White,
+    onPrimary = Color.Green,
     secondary = Red,
     secondaryVariant = RedDark,
     onSecondary = Black,
@@ -28,10 +29,10 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = White,
     primaryVariant = Red,
-    onPrimary = Black,
+    onPrimary = Color.Cyan,
     secondary = Red,
     secondaryVariant = Red,
-    onSecondary = Black,
+    onSecondary = Color.Cyan,
 
     background = BackgroundLight,
     onBackground = BackgroundLight,
@@ -79,18 +80,23 @@ fun SampleThemeTheme(
     val typography = when(theme) {
         ThemeProvider.Theme.SYSTEM -> if(isSystemInDarkTheme()) DarkTypography else LightTypography
         ThemeProvider.Theme.DARK -> DarkTypography
-        ThemeProvider.Theme.LIGHT -> if(isSystemInDarkTheme()) DarkTypography else LightTypography
-        ThemeProvider.Theme.PINK ->  if(isSystemInDarkTheme()) DarkTypography else LightTypography
+        ThemeProvider.Theme.LIGHT -> LightTypography
+        ThemeProvider.Theme.PINK ->  LightTypography
     }
     val systemUiController = rememberSystemUiController()
+    val isDarkIcons = when (theme) {
+        ThemeProvider.Theme.SYSTEM -> !isSystemInDarkTheme()
+        ThemeProvider.Theme.LIGHT -> true
+        else -> false
+    }
     SideEffect {
         systemUiController.setStatusBarColor(
             color = colors.primary,
-            darkIcons = theme != ThemeProvider.Theme.DARK,
+            darkIcons = isDarkIcons,
         )
         systemUiController.setNavigationBarColor(
             color = colors.primary,
-            darkIcons = theme != ThemeProvider.Theme.DARK,
+            darkIcons = isDarkIcons,
         )
     }
 
